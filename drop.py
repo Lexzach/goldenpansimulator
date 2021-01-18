@@ -13,7 +13,8 @@ odds = 0.0
 currentPanPrice = 4200
 print("Enter number of simulations to run: ")
 x = input()
-
+profit = 0
+loss = 0
 while simsRan != int(x):
     tourNumber = 0
     totalSpent = 0
@@ -25,9 +26,11 @@ while simsRan != int(x):
         if randint(0,10000) == 10000:
             panDropped = 1
     if tourNumber*(price*4) < currentPanPrice:
-        print("\nPan dropped!"+"\nSimulation #"+str(simsRan)+"\nFinal Numbers:\nMoney spent - "+str(round(totalSpent, 2))+"\nTour Number - "+str(tourNumber)+"\nMoney spent on " + str(tourNumber) + " tours: $"+str(round(float(tourNumber*(price*4))))+", you made $" + str(currentPanPrice - tourNumber*(price*4)) + " in profit.")
+        print("\nSimulation #"+str(simsRan)+"\nFinal Numbers:\nMoney spent - "+str(round(totalSpent, 2))+"\nTour Number - "+str(tourNumber)+"\nMoney spent on " + str(tourNumber) + " tours: $"+str(round(float(tourNumber*(price*4))))+", you made $" + str(currentPanPrice - tourNumber*(price*4)) + " in profit.")
+        profit+=1
     else:
-        print("\nPan dropped!"+"\nSimulation #"+str(simsRan)+"\nFinal Numbers:\nMoney spent - "+str(round(totalSpent, 2))+"\nTour Number - "+str(tourNumber)+"\nMoney spent on " + str(tourNumber) + " tours: $"+str(round(float(tourNumber*(price*4))))+", you lost $" + str(currentPanPrice - tourNumber*(price*4)) + " in profit.")
+        print("\nSimulation #"+str(simsRan)+"\nFinal Numbers:\nMoney spent - "+str(round(totalSpent, 2))+"\nTour Number - "+str(tourNumber)+"\nMoney spent on " + str(tourNumber) + " tours: $"+str(round(float(tourNumber*(price*4))))+", you lost $" + str(currentPanPrice - tourNumber*(price*4)) + " in profit.")
+        loss+=1
     if tourNumber < lowestTour:
         lowestTour=tourNumber
     simsRan+=1
@@ -36,8 +39,8 @@ while simsRan != int(x):
 odds = numpy.random.binomial(lowestTour, 0.01, None)
 cost = round(float(lowestTour*(price*4)))
 if round(float(lowestTour*(price*4))) < currentPanPrice:
-    print("\nSim finished!\n\nTotal tours simulated: " +str(toursTotal)+"\nTotal pans dropped: "+str(simsRan)+"\nFrom this data, the pan drop rate was: "+str((simsRan/toursTotal)*100)+"%"+". The actual drop rate is 0.01%.\nLowest tour that pan dropped: " + str(lowestTour)+"\nMoney spent on " + str(lowestTour) + " tours: $"+str(cost)+", you made $" + str(currentPanPrice - cost) + " in profit.\nOdds of getting a pan on your #"+str(lowestTour)+" run: "+str(float(odds))+"%")
+    print("\nSim finished!\n\nTotal tours simulated: " +str(toursTotal)+"\nTotal pans dropped: "+str(simsRan)+"\nFrom this data, the pan drop rate was: "+str((simsRan/toursTotal)*100)+"%"+". The actual drop rate is 0.01%."+"\nSimulations that ended in profit: "+str(profit)+"\nSimulations that ended in loss: "+str(loss)+"\n\nBest run:\nTour that pan dropped on: " + str(lowestTour)+"\nMoney spent on " + str(lowestTour) + " tours: $"+str(cost)+", you made $" + str(currentPanPrice - cost) + " in profit.\nOdds of getting a pan on your "+str(lowestTour)+" run: "+str(odds)+"%")
 else:
-    print("\nSim finished!\n\nTotal tours simulated: " +str(toursTotal)+"\nTotal pans dropped: "+str(simsRan)+"\nFrom this data, the pan drop rate was: "+str((simsRan/toursTotal)*100)+"%"+". The actual drop rate is 0.01%.\nLowest tour that pan dropped: " + str(lowestTour)+"\nMoney spent on " + str(lowestTour) + " tours: $"+str(cost)+", you lost $" + str(currentPanPrice - cost) + " in profit.\nOdds of getting a pan on your #"+str(lowestTour)+" run: "+str(float(odds))+"%")
+    print("\nSim finished!\n\nTotal tours simulated: " +str(toursTotal)+"\nTotal pans dropped: "+str(simsRan)+"\nFrom this data, the pan drop rate was: "+str((simsRan/toursTotal)*100)+"%"+". The actual drop rate is 0.01%."+"\nSimulations that ended in profit: "+str(profit)+"\nSimulations that ended in loss: "+str(loss)+"\n\nBest run:\nTour that pan dropped on: " + str(lowestTour)+"\nMoney spent on " + str(lowestTour) + " tours: $"+str(cost)+", you lost $" + str(currentPanPrice - cost) + " in profit.\nOdds of getting a pan on your "+str(lowestTour)+" run: "+str(odds)+"%")
 
 a=input()
