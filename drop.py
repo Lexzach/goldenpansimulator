@@ -16,7 +16,7 @@ mvmMinTime=25
 mvmMaxTime=75 
 timePlayed=0
 
-print("v1.3 - Made by Lexzach")
+print("v1.4 - Made by Lexzach")
 print("\nEnter number of simulations to run: ")
 toursToRun = input()
 print("Enter max number of tours per simulation (0 for unlimited):")
@@ -54,8 +54,9 @@ while simsRan != int(toursToRun):
     else:
         print("\nSimulation #"+str(simsRan)+"\nMoney spent: "+str(round(totalSpent, 2))+"\nTour pan dropped: "+str(tourNumber)+"\nMoney spent on " + str(tourNumber) + " tours: $"+str(round(float(tourNumber*(price*int(ticketsPerTour)))))+", you lost $" + str(currentPanPrice - tourNumber*(price*int(ticketsPerTour))) + " in profit.\nTotal estimated time spent playing MVM: "+str(round(timePlayed/60))+" hours")
         loss+=1
-    if tourNumber <= displayUnder:
-        underUserNumber+=1
+    if displayExtra == True:
+        if tourNumber <= displayUnder:
+            underUserNumber+=1
     if tourNumber < lowestTour:
         lowestTour=tourNumber
         lowestTourTime=timePlayed
