@@ -458,10 +458,10 @@ else:
         menuTextExtra = ("\nTours where pan was aquired within " + str(displayUnder) + " or less tours: " + str(underUserNumber)+"/"+str(simsRan)+" ("+str((underUserNumber/simsRan)*100)+"%)")
 
 #try:
-if includeOthers == True:
+if includeOthers == True and int(toursToRun) != 1 and int(toursToRun) != 0:
     print("\nMost profitable (Simulation #" + str(mostSim) +"):")
     print("Tour that pan dropped on: "+str(mostTour)+"\nMoney spent: $"+str(mostProfitPrice)+"\nTotal estimated time playing MVM: "+str(mostTourTime)+" hours\nAustralium Drops: "+str(mostAustralium)+"\nAustralium value: $"+str(mostAustraliumValue)+"\nTOTAL EARNED: $"+str(totalSpentMost))
-    menuIncludeOthers = ("\nMost profitable (Simulation #" + str(mostSim) +"):\n Tour that pan dropped on: "+str(mostTour)+"\nMoney spent: $"+str(mostProfitPrice)+"\nTotal estimated time playing MVM: "+str(mostTourTime)+" hours\nAustralium Drops: "+str(mostAustralium)+"\nAustralium value: $"+str(mostAustraliumValue)+"\nTOTAL EARNED: $"+str(totalSpentMost))
+    menuIncludeOthers = ("\nMost profitable (Simulation #" + str(mostSim) +"):\n Tour that pan dropped on: "+str(mostTour)+"\nMoney spent: $"+str(mostProfitPrice)+"\nTotal estimated time playing MVM: "+str(mostTourTime)+" hours\nAustralium Drops: "+str(mostAustralium)+"\nAustralium value: $"+str(mostAustraliumValue)+"\nTOTAL EARNED: $"+str(totalSpentMost/60))
 #except:
 #    print("")
 window = tk.Tk()
