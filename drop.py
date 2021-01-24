@@ -144,7 +144,7 @@ pricesMenu = tk.Frame(master=prices)
 buttonSave = tk.IntVar()
 count = 0
 for x in weapons:
-    temp = tk.Label(master=pricesMenu, text="Australium " + x)
+    temp = tk.Label(master=pricesMenu, text="Australium " + x + " (USD)")
     temp.grid(row=count, column=0, sticky="w")
     count+=1
 
