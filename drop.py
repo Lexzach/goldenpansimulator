@@ -108,32 +108,32 @@ api = Currency(apikey=str(data).replace("usr_api=", ""))
 #         count+=1
 
 def calcValue(x, y, z):
-    global itemValue
     try:
         itemValue = api.item_price(item=str(x), quality=str(y), craftable=z, tradable=1, priceindex=0)
         itemValue = itemValue["value"]
+        return itemValue
     except:
         print("Error while checking the price of "+x)
 
-calcValue("Mann Co. Supply Crate Key", "Unique","1")
-keyValue = itemValue
+keyValue = calcValue("Mann Co. Supply Crate Key", "Unique","1")
+
 
 values = []
 for x in weapons:
-    calcValue("Australium " + x, "Strange", "1")
-    temp = itemValue
+    
+    temp = calcValue("Australium " + x, "Strange", "1")
     temp = round((temp * keyValue) / 100 * 3,2)
     values.append(temp)
     print("Priced item [" + str(weapons.index(x)) + "/20]")
 
-calcValue("Tour of Duty Ticket", "Unique", "0")
-temp = itemValue
+
+temp = calcValue("Tour of Duty Ticket", "Unique", "0")
 temp = round((temp) / 100 * 3,2)
 ticketValue = temp
 print("Priced item [19/20]")
 
-calcValue("Golden Frying Pan", "Strange", "1")
-temp = itemValue
+
+temp = calcValue("Golden Frying Pan", "Strange", "1")
 temp = round((temp * keyValue) / 100 * 3,2)
 panValue = temp
 print("Priced item [20/20]")
@@ -460,8 +460,8 @@ else:
 #try:
 if includeOthers == True and int(toursToRun) != 1 and int(toursToRun) != 0:
     print("\nMost profitable (Simulation #" + str(mostSim) +"):")
-    print("Tour that pan dropped on: "+str(mostTour)+"\nMoney spent: $"+str(mostProfitPrice)+"\nTotal estimated time playing MVM: "+str(mostTourTime)+" hours\nAustralium Drops: "+str(mostAustralium)+"\nAustralium value: $"+str(mostAustraliumValue)+"\nTOTAL EARNED: $"+str(totalSpentMost))
-    menuIncludeOthers = ("\nMost profitable (Simulation #" + str(mostSim) +"):\n Tour that pan dropped on: "+str(mostTour)+"\nMoney spent: $"+str(mostProfitPrice)+"\nTotal estimated time playing MVM: "+str(mostTourTime)+" hours\nAustralium Drops: "+str(mostAustralium)+"\nAustralium value: $"+str(mostAustraliumValue)+"\nTOTAL EARNED: $"+str(totalSpentMost/60))
+    print("Tour that pan dropped on: "+str(mostTour)+"\nMoney spent: $"+str(mostProfitPrice)+"\nTotal estimated time playing MVM: "+str(round(mostTourTime/60))+" hours\nAustralium Drops: "+str(mostAustralium)+"\nAustralium value: $"+str(mostAustraliumValue)+"\nTOTAL EARNED: $"+str(totalSpentMost))
+    menuIncludeOthers = ("\nMost profitable (Simulation #" + str(mostSim) +"):\n Tour that pan dropped on: "+str(mostTour)+"\nMoney spent: $"+str(mostProfitPrice)+"\nTotal estimated time playing MVM: "+str(round(mostTourTime/60))+" hours\nAustralium Drops: "+str(mostAustralium)+"\nAustralium value: $"+str(mostAustraliumValue)+"\nTOTAL EARNED: $"+str(totalSpentMost))
 #except:
 #    print("")
 window = tk.Tk()
